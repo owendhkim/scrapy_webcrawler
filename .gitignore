@@ -1,0 +1,12 @@
+.vscode-server
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.gitconfig
+.lesshst
+.ssh/
+.viminfo
+.wget-hsts
+downloads/solr-9.6.0/example/
+downloads/apache-nutch-1.20/crawl/segments/
