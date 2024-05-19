@@ -1,0 +1,46 @@
+2024-05-17 19:13:30.490 INFO  (main) [c: s: r: x: t:] o.e.j.s.Server jetty-10.0.20; built: 2024-01-29T20:46:45.278Z; git: 3a745c71c23682146f262b99f4ddc4c1bc41630c; jvm 11.0.23+9-LTS
+2024-05-17 19:13:31.613 WARN  (main) [c: s: r: x: t:] o.e.j.u.DeprecationWarning Using @Deprecated Class org.eclipse.jetty.servlet.listener.ELContextCleaner
+2024-05-17 19:13:31.764 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2024-05-17 19:13:31.835 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider  ___      _       Welcome to Apache Solr™ version 9.6.0
+2024-05-17 19:13:31.842 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider / __| ___| |_ _   Starting in standalone mode on port 8983
+2024-05-17 19:13:31.847 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider \__ \/ _ \ | '_|  Install dir: /home/cvm_owenk/downloads/solr-9.6.0
+2024-05-17 19:13:31.847 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider |___/\___/_|_|    Start time: 2024-05-17T19:13:31.847804Z
+2024-05-17 19:13:31.870 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider Solr started with "-XX:+CrashOnOutOfMemoryError" that will crash on any OutOfMemoryError exception. The cause of the OOME will be logged in the crash file at the following path: /home/cvm_owenk/downloads/solr-9.6.0/server/logs/jvm_crash_191952.log
+2024-05-17 19:13:32.019 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider Solr Home: /home/cvm_owenk/downloads/solr-9.6.0/server/solr (source: system property: solr.solr.home)
+2024-05-17 19:13:32.071 INFO  (main) [c: s: r: x: t:] o.a.s.c.SolrXmlConfig Loading solr.xml from /home/cvm_owenk/downloads/solr-9.6.0/server/solr/solr.xml
+2024-05-17 19:13:32.188 INFO  (main) [c: s: r: x: t:] o.a.s.c.SolrResourceLoader Added 1 libs to classloader, from paths: [/home/cvm_owenk/downloads/solr-9.6.0/lib]
+2024-05-17 19:13:34.415 INFO  (main) [c: s: r: x: t:] o.a.s.u.t.SimplePropagator Always-on trace id generation enabled.
+2024-05-17 19:13:35.155 WARN  (main) [c: s: r: x: t:] o.a.s.u.StartupLoggingUtils Jetty request logging enabled. Will retain logs for last 3 days. See chapter "Configuring Logging" in reference guide for how to configure.
+2024-05-17 19:13:35.161 WARN  (main) [c: s: r: x: t:] o.a.s.c.CoreContainer Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info
+2024-05-17 19:13:35.737 INFO  (main) [c: s: r: x: t:] o.a.s.c.CorePropertiesLocator Found 0 core definitions underneath /home/cvm_owenk/downloads/solr-9.6.0/server/solr
+2024-05-17 19:13:36.268 WARN  (main) [c: s: r: x: t:] o.g.j.m.i.MessagingBinders A class jakarta.activation.DataSource for a default provider MessageBodyWriter<jakarta.activation.DataSource> was not found. The provider is not available.
+2024-05-17 19:13:37.205 INFO  (main) [c: s: r: x: t:] o.a.s.j.SolrRequestAuthorizer Creating a new SolrRequestAuthorizer
+2024-05-17 19:13:37.600 INFO  (main) [c: s: r: x: t:] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@467f77a5{solr-jetty-context.xml,/solr,file:///home/cvm_owenk/downloads/solr-9.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/cvm_owenk/downloads/solr-9.6.0/server/solr-webapp/webapp}
+2024-05-17 19:13:37.644 INFO  (main) [c: s: r: x: t:] o.e.j.s.RequestLogWriter Opened /home/cvm_owenk/downloads/solr-9.6.0/server/logs/2024_05_17.request.log
+2024-05-17 19:13:37.654 INFO  (main) [c: s: r: x: t:] o.e.j.s.AbstractConnector Started ServerConnector@5d465e4b{HTTP/1.1, (http/1.1, h2c)}{127.0.0.1:8983}
+2024-05-17 19:13:37.655 INFO  (main) [c: s: r: x: t:] o.e.j.s.Server Started Server@6bab2585{STARTING}[10.0.20,sto=0] @10966ms
+2024-05-17 19:14:00.789 INFO  (qtp840514538-14-localhost-2) [c: s: r: x: t:localhost-2] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1715973240560} status=0 QTime=60
+2024-05-17 19:14:00.791 INFO  (qtp840514538-20-localhost-3) [c: s: r: x: t:localhost-3] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={wt=json&_=1715973240560} status=0 QTime=58
+2024-05-17 19:14:00.843 INFO  (qtp840514538-19-localhost-4) [c: s: r: x: t:localhost-4] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973240561} status=0 QTime=121
+2024-05-17 19:17:05.860 INFO  (qtp840514538-20-localhost-28) [c: s: r: x: t:localhost-28] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1715973425657} status=0 QTime=2
+2024-05-17 19:17:05.908 INFO  (qtp840514538-18-localhost-29) [c: s: r: x: t:localhost-29] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973425657} status=0 QTime=48
+2024-05-17 19:17:05.907 INFO  (qtp840514538-17-localhost-30) [c: s: r: x: t:localhost-30] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973425657} status=0 QTime=44
+2024-05-17 19:17:10.884 INFO  (qtp840514538-23-localhost-33) [c: s: r: x: t:localhost-33] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1715973425657} status=0 QTime=0
+2024-05-17 19:17:10.918 INFO  (qtp840514538-21-localhost-31) [c: s: r: x: t:localhost-31] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973425657} status=0 QTime=41
+2024-05-17 19:17:10.919 INFO  (qtp840514538-19-localhost-32) [c: s: r: x: t:localhost-32] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1715973430771&since=0} status=0 QTime=34
+2024-05-17 19:17:17.008 INFO  (qtp840514538-17-localhost-36) [c: s: r: x: t:localhost-36] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1715973425657} status=0 QTime=0
+2024-05-17 19:17:17.031 INFO  (qtp840514538-14-localhost-35) [c: s: r: x: t:localhost-35] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973425657} status=0 QTime=24
+2024-05-17 19:17:17.033 INFO  (qtp840514538-16-localhost-34) [c: s: r: x: t:localhost-34] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973425657} status=0 QTime=28
+2024-05-17 19:20:26.558 INFO  (qtp840514538-21-localhost-38) [c: s: r: x: t:localhost-38] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1715973425657} status=0 QTime=0
+2024-05-17 19:20:26.583 INFO  (qtp840514538-23-localhost-40) [c: s: r: x: t:localhost-40] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={wt=json&_=1715973425657} status=0 QTime=0
+2024-05-17 19:20:26.609 INFO  (qtp840514538-19-localhost-39) [c: s: r: x: t:localhost-39] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973425657} status=0 QTime=28
+2024-05-17 19:20:36.790 INFO  (qtp840514538-22-localhost-41) [c: s: r: x: t:localhost-41] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1715973425657} status=0 QTime=0
+2024-05-17 19:20:36.836 INFO  (qtp840514538-17-localhost-42) [c: s: r: x: t:localhost-42] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973425657} status=0 QTime=43
+2024-05-17 19:20:36.842 INFO  (qtp840514538-16-localhost-43) [c: s: r: x: t:localhost-43] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1715973425657} status=0 QTime=28
+2024-05-17 19:21:09.054 INFO  (ShutdownMonitor) [c: s: r: x: t:] o.e.j.s.Server Stopped Server@6bab2585{STOPPING}[10.0.20,sto=0]
+2024-05-17 19:21:09.061 INFO  (ShutdownMonitor) [c: s: r: x: t:] o.e.j.s.AbstractConnector Stopped ServerConnector@5d465e4b{HTTP/1.1, (http/1.1, h2c)}{127.0.0.1:8983}
+2024-05-17 19:21:09.128 INFO  (ShutdownMonitor) [c: s: r: x: t:] o.a.s.c.CoreContainer Shutting down CoreContainer instance=792195577
+2024-05-17 19:21:09.141 INFO  (ShutdownMonitor) [c: s: r: x: t:] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node tag=null
+2024-05-17 19:21:09.265 INFO  (ShutdownMonitor) [c: s: r: x: t:] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm tag=null
+2024-05-17 19:21:09.285 INFO  (ShutdownMonitor) [c: s: r: x: t:] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty tag=null
+2024-05-17 19:21:09.306 INFO  (ShutdownMonitor) [c: s: r: x: t:] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@467f77a5{solr-jetty-context.xml,/solr,null,STOPPED}{/home/cvm_owenk/downloads/solr-9.6.0/server/solr-webapp/webapp}

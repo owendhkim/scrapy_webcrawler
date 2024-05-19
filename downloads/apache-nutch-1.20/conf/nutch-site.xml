@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+ <name>http.agent.name</name>
+ <value>testCrawler/1.0 (http://www.iastate.edu; cvm_owenk@iastate.edu)</value>
+</property>
+
+</configuration>

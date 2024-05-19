@@ -1,0 +1,7 @@
+---library/programs installed---
+
+dnf install python3.9-pip
+
+pip install scrapy
+
+sudo dnf install java-11-openjdk-devel
