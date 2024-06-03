@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bar Example</title>
+    <style>
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .search-input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+        }
+        .search-button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-left: none;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        .search-button:hover {
+            background-color: #4cae4c;
+        }
+
+        .search-results {
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Individual result items */
+        .result-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* Links within each result */
+        .result-item a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Summary text under the link */
+        .result-summary {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* Highlighting for matching search terms */
+        strong {
+            color: #d63447; /* A red color for highlights */
+            font-weight: normal; /* Keep it normal despite being bold, to stand out */
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search...">
+        <button class="search-button">Search</button>
+    </div>
+    <div class="results-count"></div>
+    <div class="search-results"></div>
+    <script>
+        var searchButton = document.querySelector('.search-button');
+        var searchInput = document.querySelector('.search-input');
+        var resultsCount = document.querySelector('.results-count');
+        var resultsContainer = document.querySelector('.search-results');
+    
+        function highlightText(text, query) {
+        const escapedQuery = query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'); // Escape regex characters
+        const regex = new RegExp(`(${escapedQuery})`, 'gi'); // Global, case-insensitive
+        return text.replace(regex, '<strong>$1</strong>');
+        }
+
+        searchButton.addEventListener('click', function() {
+        var query = searchInput.value;
+        fetch(`/search?q=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(data => {
+                resultsContainer.innerHTML = ''; // Clear previous results
+                resultsCount.textContent = `Number of documents found: ${data.numFound}`;
+                if (data.docs && data.docs.length > 0) {
+                    data.docs.forEach((doc, index) => {
+                        var resultItem = document.createElement('div');
+                        resultItem.classList.add('result-item'); // Added class for styling
+                        
+                        var link = document.createElement('a');
+                        link.href = doc.url;
+                        link.textContent = `${index + 1}. ${doc.title}`;
+                        link.target = "_blank";
+                        resultItem.appendChild(link);
+
+                        var summary = document.createElement('p');
+                        summary.innerHTML = highlightText(doc.content.substring(0, 200) + '...', query); // Truncate and highlight summary
+                        summary.classList.add('result-summary'); // Added class for styling
+                        resultItem.appendChild(summary);
+
+                        resultsContainer.appendChild(resultItem);
+                    });
+                } else {
+                    resultsContainer.innerHTML = '<p>No results found</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultsContainer.innerHTML = '<p>Error loading the results</p>';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "log4js": "^6.9.1",
+    "solr-node": "^1.2.1"
+  }
+}
