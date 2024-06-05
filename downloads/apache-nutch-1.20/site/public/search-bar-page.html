@@ -73,6 +73,31 @@
             color: #d63447; /* A red color for highlights */
             font-weight: normal; /* Keep it normal despite being bold, to stand out */
         }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .page-button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .page-button:hover {
+            background-color: #4cae4c;
+        }
+
+        .page-button.current {
+            background-color: #ccc;
+            cursor: default;
+        }
     </style>
 </head>
 <body>
@@ -94,39 +119,101 @@
         return text.replace(regex, '<strong>$1</strong>');
         }
 
+        function loadResults(page) {
+            var query = searchInput.value;
+            fetch(`/search?q=${encodeURIComponent(query)}&page=${page}`)
+                .then(response => response.json())
+                .then(data => {
+                    resultsContainer.innerHTML = ''; // Clear previous results
+                    resultsCount.textContent = `Number of documents found: ${data.numFound}`;
+                    if (data.docs && data.docs.length > 0) {
+                        data.docs.forEach((doc, index) => {
+                            var resultItem = document.createElement('div');
+                            resultItem.classList.add('result-item'); // Added class for styling
+                            
+                            var link = document.createElement('a');
+                            link.href = doc.url;
+                            link.textContent = `${index + 1}. ${doc.title}`;
+                            link.target = "_blank";
+                            resultItem.appendChild(link);
+
+                            var summary = document.createElement('p');
+                            var content = doc.content;
+                            var queryIndex = content.toLowerCase().indexOf(query.toLowerCase());
+
+                            if (queryIndex >= 0) {
+                                // If the query is found in the content, create a substring around it
+                                var start = Math.max(0, queryIndex - 100);
+                                var end = Math.min(content.length, queryIndex + query.length + 100);
+                                summary.innerHTML = highlightText(content.substring(start, end) + '...', query);
+                            } else {
+                                // If the query is not found, just display the first 200 characters
+                                summary.innerHTML = highlightText(content.substring(0, 200) + '...', query);
+                            }
+
+                            summary.classList.add('result-summary'); // Added class for styling
+                            resultItem.appendChild(summary);
+
+                            resultsContainer.appendChild(resultItem);
+                        });
+                    } else {
+                        resultsContainer.innerHTML = '<p>No results found</p>';
+                    }
+
+                    // Pagination
+                    var totalPages = Math.ceil(data.numFound / 10);
+                    var startPage = Math.floor((page - 1) / 10) * 10 + 1; // Calculate start page based on current page
+                    var endPage = Math.min(totalPages, startPage + 9);
+                    var pagination = document.createElement('div');
+                    pagination.classList.add('pagination');
+
+                    // Previous button
+                    if (page > 1) {
+                        var prevButton = document.createElement('button');
+                        prevButton.textContent = 'Previous';
+                        prevButton.classList.add('page-button');
+                        prevButton.addEventListener('click', function() {
+                            loadResults(page - 1);
+                        });
+                        pagination.appendChild(prevButton);
+                    }
+
+                    // Page buttons
+                    for (let i = startPage; i <= endPage; i++) {
+                        var pageButton = document.createElement('button');
+                        pageButton.textContent = i;
+                        pageButton.classList.add('page-button');
+                        if (i === page) {
+                            pageButton.classList.add('current');
+                        }
+                        pageButton.addEventListener('click', function() {
+                            loadResults(i);
+                        });
+                        pagination.appendChild(pageButton);
+                    }
+
+                    // Next button
+                    if (page < totalPages) {
+                        var nextButton = document.createElement('button');
+                        nextButton.textContent = 'Next';
+                        nextButton.classList.add('page-button');
+                        nextButton.addEventListener('click', function() {
+                            loadResults(page + 1);
+                        });
+                        pagination.appendChild(nextButton);
+                    }
+
+                    resultsContainer.appendChild(pagination);
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    resultsContainer.innerHTML = '<p>Error loading the results</p>';
+                });
+        }
+
         searchButton.addEventListener('click', function() {
-        var query = searchInput.value;
-        fetch(`/search?q=${encodeURIComponent(query)}`)
-            .then(response => response.json())
-            .then(data => {
-                resultsContainer.innerHTML = ''; // Clear previous results
-                resultsCount.textContent = `Number of documents found: ${data.numFound}`;
-                if (data.docs && data.docs.length > 0) {
-                    data.docs.forEach((doc, index) => {
-                        var resultItem = document.createElement('div');
-                        resultItem.classList.add('result-item'); // Added class for styling
-                        
-                        var link = document.createElement('a');
-                        link.href = doc.url;
-                        link.textContent = `${index + 1}. ${doc.title}`;
-                        link.target = "_blank";
-                        resultItem.appendChild(link);
-
-                        var summary = document.createElement('p');
-                        summary.innerHTML = highlightText(doc.content.substring(0, 200) + '...', query); // Truncate and highlight summary
-                        summary.classList.add('result-summary'); // Added class for styling
-                        resultItem.appendChild(summary);
-
-                        resultsContainer.appendChild(resultItem);
-                    });
-                } else {
-                    resultsContainer.innerHTML = '<p>No results found</p>';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                resultsContainer.innerHTML = '<p>Error loading the results</p>';
-            });
+            loadResults(1);
         });
     </script>
 </body>
