@@ -133,7 +133,27 @@
                             
                             var link = document.createElement('a');
                             link.href = doc.url;
+                            
+                            if (doc.title) {
+                            // Check if title ends with " | Iowa State University" and strip it out if it does
+                            var suffix1 = " | Iowa State University";
+                            if (doc.title.endsWith(suffix1)) {
+                                doc.title = doc.title.slice(0, -suffix1.length);
+                            }
+
+                            var suffix2 = " • College of Veterinary Medicine • Iowa State University"
+                            if (doc.title.endsWith(suffix2)) {
+                                doc.title = doc.title.slice(0, -suffix2.length);
+                            }
+
                             link.textContent = `${index + 1}. ${doc.title}`;
+                            } else {
+                                // Extract the PDF filename from the URL
+                                var urlParts = doc.url.split('/');
+                                var filename = urlParts[urlParts.length - 1];
+                                link.textContent = `${index + 1}. ${filename}`;
+                            }
+
                             link.target = "_blank";
                             resultItem.appendChild(link);
 
